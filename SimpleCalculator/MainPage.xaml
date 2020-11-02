@@ -38,7 +38,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock Text="0.0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="100" Foreground="White"/>
+        <TextBlock x:Name="resultTxtBlock" Text="0.0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="100" Foreground="White"/>
         <Button x:Name="cBtn" Content="C" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8" Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30"/>
         <Button x:Name="ceBtn" Content="CE" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8"  Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30"/>
         <Button x:Name="modBtn" Content="%" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8"  Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30"/>
