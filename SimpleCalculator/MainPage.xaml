@@ -8,6 +8,10 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.DataContext>
+        <local:MainViewModel />
+    </Page.DataContext>
+
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -38,25 +42,27 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="resultTxtBlock" Text="0.0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="100" Foreground="White"/>
-        <Button x:Name="cBtn" Content="C" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8" Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30" Click="CBtn_Click"/>
-        <Button x:Name="ceBtn" Content="CE" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8"  Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30" Click="CeBtn_Click"/>
-        <Button x:Name="modBtn" Content="%" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8"  Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30" Click="ModBtn_Click"/>
-        <Button x:Name="divideBtn" Content="÷" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f98510" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="DivideBtn_Click"/>
-        <Button x:Name="btn7" Content="7" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="Btn7_Click"/>
-        <Button x:Name="btn8" Content="8" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="Btn8_Click"/>
-        <Button x:Name="btn9" Content="9" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="Btn9_Click"/>
-        <Button x:Name="multBtn" Content="x" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f98510" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="MultBtn_Click"/>
-        <Button x:Name="btn4" Content="4" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="Btn4_Click"/>
-        <Button x:Name="btn5" Content="5" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="Btn5_Click"/>
-        <Button x:Name="btn6" Content="6" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="Btn6_Click"/>
-        <Button x:Name="minusBtn" Content="-" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f98510" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="MinusBtn_Click"/>
-        <Button x:Name="btn1" Content="1" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="Btn1_Click"/>
-        <Button x:Name="btn2" Content="2" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="Btn2_Click"/>
-        <Button x:Name="btn3" Content="3" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="Btn3_Click"/>
-        <Button x:Name="plusBtn" Content="+" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f98510" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="PlusBtn_Click"/>
-        <Button x:Name="btn0" Content="0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="Btn0_Click"/>
-        <Button x:Name="pointBtn" Content="." Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="PointBtn_Click"/>
-        <Button x:Name="equalBtn" Content="=" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f98510" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30" Click="EqualBtn_Click"/>
+        <Viewbox Stretch="Uniform" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <TextBlock Text="{Binding DisplayNumber, Mode=TwoWay}" Foreground="White" Margin="0 0 1 0"/>
+        </Viewbox>
+        <Button Command="{ Binding SelectButton}" CommandParameter="CBtn" Content="C" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8" Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="CeBtn" Content="CE" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8"  Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="modBtn" Content="%" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8"  Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="divideBtn" Content="÷" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f98510" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="Number7" Content="7" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="Number8" Content="8" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="Number9" Content="9" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="multBtn" Content="x" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f98510" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="Number4" Content="4" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="Number5" Content="5" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="Number6" Content="6" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="minusBtn" Content="-" Grid.Row="3" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f98510" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="Number1" Content="1" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="Number2" Content="2" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="Number3" Content="3" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="plusBtn" Content="+" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f98510" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="Number0" Content="0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="pointBtn" Content="." Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#333333" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
+        <Button Command="{ Binding SelectButton}" CommandParameter="equalBtn" Content="=" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#f98510" Foreground="White" BorderBrush="#c4c6c8" BorderThickness="0.25" FontSize="30"/>
     </Grid>
 </Page>
