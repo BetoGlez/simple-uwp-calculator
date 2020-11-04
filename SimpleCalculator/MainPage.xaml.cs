@@ -25,12 +25,6 @@ namespace SimpleCalculator
 
     public sealed partial class MainPage : Page
     {
-        /*
-        public double op1 = 0.0;
-        public double op2 = 0.0;
-        public string displayNumber = "";
-        private Operation? currOperation;
-        */
         public MainPage()
         {
             this.InitializeComponent();
