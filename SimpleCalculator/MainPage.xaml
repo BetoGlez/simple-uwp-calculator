@@ -43,7 +43,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Viewbox Stretch="Uniform" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <TextBlock Text="{Binding DisplayNumber, Mode=TwoWay}" Foreground="White" Margin="0 0 1 0"/>
+            <TextBlock Text="{Binding DisplayNumber, Mode=TwoWay}" Foreground="White" Margin="1 0 1 0"/>
         </Viewbox>
         <Button Command="{ Binding SelectButton}" CommandParameter="CBtn" Content="C" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8" Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30"/>
         <Button Command="{ Binding SelectButton}" CommandParameter="CeBtn" Content="CE" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#c4c6c8"  Foreground="#333333" BorderBrush="#333333" BorderThickness="0.25" FontSize="30"/>
